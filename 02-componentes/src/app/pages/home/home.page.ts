@@ -5,11 +5,23 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
+  public listItems: ListItem[] = [
+    {
+      icon: 'american-football-outline',
+      name: 'Action Sheet',
+      route: '/action-sheet',
+    },
+    {
+      icon: 'logo-apple-appstore',
+      name: 'Alert',
+      route: '/alert',
+    },
+  ];
+}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+interface ListItem {
+  icon: string;
+  name: string;
+  route: string;
 }

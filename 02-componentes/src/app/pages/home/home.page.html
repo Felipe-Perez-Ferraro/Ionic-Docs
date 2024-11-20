@@ -5,6 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-button routerLink="/alert">Alert</ion-button>
-  <ion-button routerLink="/action-sheet">Action Sheet</ion-button>
+  <ion-list>
+    @for (listItem of listItems; track listItem.name) {
+    <ion-item [routerLink]="listItem.route" detail="true">
+      <ion-icon [name]="listItem.icon" slot="start" color="secondary" />
+      {{ listItem.name }}
+    </ion-item>
+    }
+  </ion-list>
 </ion-content>
