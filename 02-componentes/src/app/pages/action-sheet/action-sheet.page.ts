@@ -1,15 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-action-sheet',
   templateUrl: './action-sheet.page.html',
-  styleUrls: ['./action-sheet.page.scss'],
 })
-export class ActionSheetPage implements OnInit {
+export class ActionSheetPage {
+  private actionSheetCtrl = inject(ActionSheetController);
 
-  constructor() { }
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Action Sheet Options',
+      buttons: [
+        {
+          text: 'Delete',
+          role: 'destructive',
+          cssClass: 'red',
+          data: {
+            action: 'delete',
+          },
+          handler: () => {
+            console.log('Borrado');
+          },
+        },
+        {
+          text: 'Share',
+          data: {
+            action: 'share',
+          },
+          handler: () => {
+            console.log('Compartido');
+          },
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          data: {
+            action: 'cancel',
+          },
+          handler: () => {
+            console.log('Cancelar');
+          },
+        },
+      ],
+    });
 
-  ngOnInit() {
+    await actionSheet.present();
   }
-
 }

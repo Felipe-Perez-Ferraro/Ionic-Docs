@@ -1,3 +1,21 @@
 <components-header title="Alert" />
 
-<ion-content [fullscreen]="true"></ion-content>
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="presentAlert()">
+    Mostrar Alerta
+  </ion-button>
+
+  <ion-button expand="block" (click)="presentMultiAlert()">
+    Mostrar Alerta Múltiple
+  </ion-button>
+
+  <ion-button expand="block" id="alert-input">
+    Mostrar Alerta Inputs
+  </ion-button>
+  <ion-alert
+    trigger="alert-input"
+    header="Ingresa tus datos"
+    [buttons]="alertInputsBtn"
+    [inputs]="alertInputs"
+  />
+</ion-content>

@@ -1,0 +1,16 @@
+<components-header title="Checkbox" />
+
+<ion-content>
+  <ion-list>
+    @for (item of checks; track item.name) {
+    <ion-item>
+      <ion-checkbox
+        slot="start"
+        [color]="item.name"
+        [(ngModel)]="item.selected"
+      />
+      <ion-label>{{ item.name }}</ion-label>
+    </ion-item>
+    }
+  </ion-list>
+</ion-content>

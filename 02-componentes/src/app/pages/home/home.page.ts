@@ -13,9 +13,34 @@ export class HomePage {
       route: '/action-sheet',
     },
     {
-      icon: 'logo-apple-appstore',
+      icon: 'alert-circle-outline',
       name: 'Alert',
       route: '/alert',
+    },
+    {
+      icon: 'beaker-outline',
+      name: 'Avatar',
+      route: '/avatar',
+    },
+    {
+      icon: 'radio-button-off-outline',
+      name: 'Buttons',
+      route: '/buttons',
+    },
+    {
+      icon: 'card-outline',
+      name: 'Cards',
+      route: '/card',
+    },
+    {
+      icon: 'checkmark-circle-outline',
+      name: 'Checkbox',
+      route: '/check',
+    },
+    {
+      icon: 'calendar-outline',
+      name: 'Date Time',
+      route: '/date-time',
     },
   ];
 }
