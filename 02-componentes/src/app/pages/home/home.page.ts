@@ -42,6 +42,26 @@ export class HomePage {
       name: 'Date Time',
       route: '/date-time',
     },
+    {
+      icon: 'car-outline',
+      name: 'Fab',
+      route: '/fab',
+    },
+    {
+      icon: 'grid-outline',
+      name: 'Grid',
+      route: '/grid',
+    },
+    {
+      icon: 'infinite-outline',
+      name: 'Infinite',
+      route: '/infinite-scroll',
+    },
+    {
+      icon: 'hammer-outline',
+      name: 'Inputs',
+      route: '/input',
+    },
   ];
 }
 

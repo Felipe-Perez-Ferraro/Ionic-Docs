@@ -1,3 +1,43 @@
 <components-header title="Date Time" />
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Datos de Nacimiento</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Fecha de Nacimiento</ion-label>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            id="datetime"
+            display-format="DD.MM.YYYY HH:mm"
+            [showDefaultButtons]="true"
+          />
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+
+    <ion-list-header>
+      <ion-label>Restricciones</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Fecha de Nacimiento</ion-label>
+      <ion-datetime-button datetime="datetime2"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            id="datetime2"
+            presentation="month-year"
+            [showDefaultButtons]="true"
+            min="2008"
+            max="2025"
+          />
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+  </ion-list>
+</ion-content>
