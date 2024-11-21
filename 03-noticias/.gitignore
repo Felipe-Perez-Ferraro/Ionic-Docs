@@ -1,6 +1,7 @@
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
 
+
 *~
 *.sw[mnpcod]
 .tmp
@@ -70,4 +71,4 @@ testem.log
 Thumbs.db
 
 # Environments
-.src/environments
+src/environments/
