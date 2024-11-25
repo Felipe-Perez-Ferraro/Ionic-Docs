@@ -12,4 +12,16 @@
   </ion-header>
 
   <components-articles [articles]="articles" />
+
+  <ion-infinite-scroll
+    threshold="25%"
+    position="bottom"
+    (ionInfinite)="loadData()"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
