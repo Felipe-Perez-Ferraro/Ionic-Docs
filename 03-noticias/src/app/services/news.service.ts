@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Article, NewsResponse } from '../interfaces/news-response.interface';
 import { map, Observable, of } from 'rxjs';
 import { ArticlesByCategoryAndPage } from '../interfaces/articles-by-page.interface';
+import { storedArticlesByCategory } from '../data/mock-news';
 
 const apiKey = environment.apiKey;
 const apiUrl = environment.apiUrl;
@@ -12,31 +13,34 @@ const apiUrl = environment.apiUrl;
   providedIn: 'root',
 })
 export class NewsService {
-  private articlesByCategoryAndPage: ArticlesByCategoryAndPage = {};
+  private articlesByCategoryAndPage: ArticlesByCategoryAndPage =
+    storedArticlesByCategory;
 
   constructor(private http: HttpClient) {}
 
   getTopHeadlineNews(): Observable<Article[]> {
-    return this.getArticlesByCategory('business');
+    return of(this.articlesByCategoryAndPage['business'].articles);
   }
 
   getTopHeadlineByCategories(
     category: string,
     loadMore: boolean = false
   ): Observable<Article[]> {
-    if (loadMore) {
-      return this.getArticlesByCategory(category);
-    }
+    return of(this.articlesByCategoryAndPage[category].articles);
 
-    if (this.articlesByCategoryAndPage[category]) {
-      return of(this.articlesByCategoryAndPage[category].articles);
-    }
+    // if (loadMore) {
+    //   return this.getArticlesByCategory(category);
+    // }
 
-    return this.getArticlesByCategory(category);
+    // if (this.articlesByCategoryAndPage[category]) {
+    //   return of(this.articlesByCategoryAndPage[category].articles);
+    // }
+
+    // return this.getArticlesByCategory(category);
   }
 
   private executeQuery<T>(endpoint: string): Observable<T> {
-    console.log('http');
+    console.log('hyyp');
     return this.http.get<T>(`${apiUrl}${endpoint}`, {
       params: {
         apiKey,
