@@ -42,6 +42,11 @@ export class ArticleComponent {
         handler: () => this.onToggleFavorite(),
       },
       {
+        text: 'Compartir',
+        icon: 'share-outline',
+        handler: () => this.onShareArticle(),
+      },
+      {
         text: 'Cancelar',
         icon: 'close-outline',
         role: 'cancel',
@@ -54,7 +59,7 @@ export class ArticleComponent {
       handler: () => this.onShareArticle(),
     };
 
-    if (this.platform.is('capacitor')) buttons.unshift(share);
+    // if (this.platform.is('capacitor')) buttons.unshift(share);
 
     const actionSheet = await this.actionSheetCrtl.create({
       header: 'Opciones',
@@ -65,11 +70,26 @@ export class ArticleComponent {
   }
 
   private onShareArticle(): void {
-    Share.share({
-      text: this.article.title,
-      dialogTitle: this.article.source.name,
-      url: this.article.url,
-    });
+    if (this.platform.is('cordova')) {
+      Share.share({
+        text: this.article.title,
+        dialogTitle: this.article.source.name,
+        url: this.article.url,
+      });
+    } else {
+      if (navigator.share) {
+        navigator
+          .share({
+            title: this.article.title,
+            text: this.article.description!,
+            url: this.article.url,
+          })
+          .then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+      } else {
+        console.log('navegador no soporta');
+      }
+    }
   }
 
   private onToggleFavorite() {
