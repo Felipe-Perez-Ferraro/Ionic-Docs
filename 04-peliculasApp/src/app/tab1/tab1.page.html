@@ -1,17 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <components-movies-slide-title slideTitle="Películas Recientes" />
+  <components-slideshow-backdrop [recentMovies]="recentMovies" />
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <components-movies-slide-title slideTitle="Cartelera" />
+  <components-slideshow-poster [recentMovies]="recentMovies" />
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <components-movies-slide-title slideTitle="Populares" />
+  <components-slideshow-pairs
+    [popularMovies]="popularMovies"
+    (loadMoreMovies)="loadMoreMovies()"
+  />
 </ion-content>

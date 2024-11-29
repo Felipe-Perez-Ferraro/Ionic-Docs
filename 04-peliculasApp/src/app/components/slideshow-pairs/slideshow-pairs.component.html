@@ -1,0 +1,23 @@
+<swiper-container class="swiper-container-pairs">
+  <swiper-slide *ngFor="let pair of popularMovies | pairs">
+    <ion-row>
+      <ion-col size="12" *ngFor="let m of pair">
+        <ion-card *ngIf="m.poster_path">
+          <img
+            loading="lazy"
+            [src]="m.poster_path | image"
+            [alt]="m.title"
+            class="poster"
+          />
+          <div class="swiper-lazy-preloader"></div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </swiper-slide>
+
+  <swiper-slide class="slide-add">
+    <ion-button size="large" (click)="onLoadMore()" class="btn-add">
+      <ion-icon name="add" slot="icon-only" />
+    </ion-button>
+  </swiper-slide>
+</swiper-container>
