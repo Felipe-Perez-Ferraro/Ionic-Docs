@@ -1,6 +1,6 @@
 <swiper-container class="swiper-container-backdrop">
   <swiper-slide *ngFor="let m of recentMovies">
-    <ion-card *ngIf="m.backdrop_path">
+    <ion-card *ngIf="m.backdrop_path" (click)="viewMovieDetails(m.id)">
       <img loading="lazy" [src]="m.backdrop_path | image" [alt]="m.title" />
       <div class="swiper-lazy-preloader"></div>
     </ion-card>

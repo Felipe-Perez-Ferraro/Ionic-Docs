@@ -1,5 +1,5 @@
-<swiper-container class="swiper-container-poster">
-  <swiper-slide *ngFor="let m of recentMovies">
+<swiper-container class="swiper-container-poster-fav">
+  <swiper-slide *ngFor="let m of movies">
     <ion-card *ngIf="m.poster_path" (click)="viewMovieDetails(m.id)">
       <img
         loading="lazy"

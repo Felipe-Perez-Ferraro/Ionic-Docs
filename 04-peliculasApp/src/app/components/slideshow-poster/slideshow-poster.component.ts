@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/interfaces/movies-response.interface';
 import { register, SwiperContainer } from 'swiper/element/bundle';
 import { SwiperOptions } from 'swiper/types';
+import { MovieDetailsComponent } from '../movie-details/movie-details.component';
+import { ModalController } from '@ionic/angular';
 register();
 
 @Component({
@@ -13,8 +15,21 @@ export class SlideshowPosterComponent implements OnInit {
 
   swiperElement: SwiperContainer | null = null;
 
+  constructor(private modalCtrl: ModalController) {}
+
   ngOnInit() {
     this.displayCarousel();
+  }
+
+  async viewMovieDetails(movieId: number) {
+    const modal = await this.modalCtrl.create({
+      component: MovieDetailsComponent,
+      componentProps: {
+        movieId,
+      },
+    });
+
+    modal.present();
   }
 
   private displayCarousel() {

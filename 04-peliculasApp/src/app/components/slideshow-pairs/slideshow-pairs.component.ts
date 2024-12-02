@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Movie } from 'src/app/interfaces/movies-response.interface';
 import { SwiperContainer } from 'swiper/element';
-import { SwiperModule, SwiperOptions } from 'swiper/types';
+import { SwiperOptions } from 'swiper/types';
+import { MovieDetailsComponent } from '../movie-details/movie-details.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'components-slideshow-pairs',
@@ -15,12 +17,25 @@ export class SlideshowPairsComponent {
 
   swiperElement: SwiperContainer | null = null;
 
+  constructor(private modalCtrl: ModalController) {}
+
   ngOnInit() {
     this.displayCarousel();
   }
 
   onLoadMore() {
     this.loadMoreMovies!.emit();
+  }
+
+  async viewMovieDetails(movieId: number) {
+    const modal = await this.modalCtrl.create({
+      component: MovieDetailsComponent,
+      componentProps: {
+        movieId,
+      },
+    });
+
+    modal.present();
   }
 
   private displayCarousel() {

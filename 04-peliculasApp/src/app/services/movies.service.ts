@@ -3,12 +3,17 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Movie, MoviesResponse } from '../interfaces/movies-response.interface';
 import { environment } from 'src/environments/environment';
+import { Genre, MovieDetails } from '../interfaces/movie-details.interface';
+import { MovieCast } from '../interfaces/movie-cast.interface';
+import { MovieGenres } from '../interfaces/movie-genres.interface';
 
 const URL = environment.apiUrl;
 const apiKey = environment.apiKey;
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
+  genres: Genre[] = [];
+
   private popularMoviesPage: number = 0;
 
   constructor(private http: HttpClient) {}
@@ -47,8 +52,37 @@ export class MoviesService {
     ).pipe(map(({ results }) => results));
   }
 
-  private executeQuery<T>(query: string): Observable<MoviesResponse> {
+  getMovieDetails(movieId: number): Observable<MovieDetails> {
+    return this.executeQuery<MovieDetails>(`/movie/${movieId}?a=1`).pipe(
+      map((res) => res)
+    );
+  }
+
+  getMovieCast(movieId: number): Observable<MovieCast> {
+    return this.executeQuery<MovieCast>(`/movie/${movieId}/credits?a=1`).pipe(
+      map((res) => res)
+    );
+  }
+
+  getSearchMovie(movie: string): Observable<Movie[]> {
+    return this.executeQuery<MoviesResponse>(
+      `/search/movie?query=${movie}`
+    ).pipe(map(({ results }) => results));
+  }
+
+  getGenres(): Promise<Genre[]> {
+    return new Promise((resolve) => {
+      this.executeQuery<MovieGenres>('/genre/movie/list?a=1').subscribe(
+        (res) => {
+          this.genres = res.genres;
+          resolve(this.genres);
+        }
+      );
+    });
+  }
+
+  private executeQuery<T>(query: string): Observable<T> {
     const url = `${URL}${query}&api_key=${apiKey}&language=es&include_image_language=es`;
-    return this.http.get<MoviesResponse>(url);
+    return this.http.get<T>(url);
   }
 }
