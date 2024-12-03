@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PushService } from '../services/push.service';
+import { Notification } from 'src/interfaces/os-res.interface';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  messages: Notification[] = [];
 
-  constructor() {}
+  constructor(private pushService: PushService) {}
 
+  ngOnInit(): void {
+    this.displayMessages();
+  }
+
+  displayMessages() {
+    this.pushService.getMessages().subscribe((res) => {
+      this.messages = res;
+    });
+  }
 }
