@@ -1,7 +1,0 @@
-{
-  "name": "heroes-app",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular-standalone"
-}
