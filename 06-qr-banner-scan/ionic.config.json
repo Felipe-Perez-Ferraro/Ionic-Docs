@@ -1,0 +1,7 @@
+{
+  "name": "qr-banner-scan",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
