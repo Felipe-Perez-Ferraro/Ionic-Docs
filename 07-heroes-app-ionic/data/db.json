@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "usuario": "John Doe",
+      "email": "john.due@gmail.com"
+    }
+  ],
+  "heroes": [
+    {
+      "id": "dc-batman",
+      "superhero": "Batman",
+      "publisher": "DC Comics",
+      "alter_ego": "Bruce Wayne",
+      "first_appearance": "Detective Comics #27",
+      "characters": "Bruce Wayne",
+      "hero_alt": "assets/heroes/dc-batman.jpg"
+    },
+    {
+      "id": "dc-superman",
+      "superhero": "Superman",
+      "publisher": "DC Comics",
+      "alter_ego": "Kal-E",
+      "first_appearance": "Action Comics #1",
+      "characters": "Kal-El",
+      "hero_alt": "assets/heroes/dc-superman.jpg"
+    }
+  ]
+}

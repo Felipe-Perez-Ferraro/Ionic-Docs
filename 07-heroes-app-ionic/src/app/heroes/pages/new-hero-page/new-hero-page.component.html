@@ -1,0 +1,103 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              {{ hero.id ? "Editar Héroe" : "Agregar Héroe" }}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+              <ion-item>
+                <ion-input
+                  label="Super Héroe"
+                  labelPlacement="floating"
+                  type="text"
+                  formControlName="superhero"
+                />
+              </ion-item>
+
+              <ion-item>
+                <ion-input
+                  label="Alter Ego"
+                  labelPlacement="floating"
+                  type="text"
+                  formControlName="alter_ego"
+                />
+              </ion-item>
+
+              <ion-item>
+                <ion-input
+                  label="Primera Aparición"
+                  labelPlacement="floating"
+                  type="text"
+                  formControlName="first_appearance"
+                />
+              </ion-item>
+
+              <ion-item>
+                <ion-input
+                  label="Personajes"
+                  labelPlacement="floating"
+                  type="text"
+                  formControlName="characters"
+                />
+              </ion-item>
+
+              <ion-item>
+                <ion-select
+                  label="Creador"
+                  label-placement="floating"
+                  interface="popover"
+                  formControlName="publisher"
+                >
+                  <ion-select-option
+                    *ngFor="let publisher of publishers"
+                    [value]="publisher.id"
+                  >
+                    {{ publisher.desc }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-input
+                  label="Imagen Alternativa"
+                  labelPlacement="floating"
+                  type="text"
+                  formControlName="hero_alt"
+                />
+              </ion-item>
+
+              <ion-item lines="none" class="new-hero-itemButtons">
+                <ion-button color="primary" type="submit" expand="block">
+                  <ion-icon name="save"></ion-icon>
+                  <ion-label class="ion-margin-horizontal">Guardar</ion-label>
+                </ion-button>
+
+                <ion-button
+                  *ngIf="hero.id"
+                  color="danger"
+                  type="button"
+                  expand="block"
+                  slot="end"
+                  (click)="onDeleteHero()"
+                >
+                  <ion-icon name="trash-outline"></ion-icon>
+                  <ion-label class="ion-margin-horizontal">Eliminar</ion-label>
+                </ion-button>
+              </ion-item>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12">
+        <ion-card>
+          <ion-img [src]="hero | heroImage" />
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

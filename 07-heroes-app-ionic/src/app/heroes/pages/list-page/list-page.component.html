@@ -1,0 +1,7 @@
+<ion-content class="ion-padding">
+  <ion-title>Listado de Héroes</ion-title>
+
+  @for (hero of heroes; track hero.id) {
+  <heroes-components-hero-card [hero]="hero" />
+  }
+</ion-content>

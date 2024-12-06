@@ -1,0 +1,25 @@
+<ion-content>
+  <ion-title>Buscador</ion-title>
+
+  <ion-searchbar
+    placeholder="Buscador de Héroes"
+    animated="true"
+    [debounce]="700"
+    [value]="searchText"
+    (ionInput)="onSearchChange($event)"
+    #searhInput
+  />
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col *ngIf="heroSelected.length > 0">
+        @for (hero of heroSelected; track hero.id) {
+        <heroes-components-hero-card [hero]="hero" />
+        }
+      </ion-col>
+      <ion-col *ngIf="heroSelected.length === 0 && searhInput.value">
+        No se encontró el héroe "{{ searhInput.value }}"
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
